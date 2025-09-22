@@ -1,27 +1,34 @@
-name: Deploy web portfolio to EC2
+name: Deploy to EC2
 
-# Trigger workflow on push to main branch
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu latest
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repo
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-      # Step 2:
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.6
+
+      - name: Copy files to EC2
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
-          source: "*"
-          target: "/home/ec2-user/app"
+          source: "."
+          target: "~/app"
+
+      - name: SSH into EC2 and restart app
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/app
+            python3 -m http.server 80 &
