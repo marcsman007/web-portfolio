@@ -1,8 +1,14 @@
-/* Reset and base styling */
+/* ================================
+   RESET AND BASE STYLING
+================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -11,9 +17,12 @@ body {
   color: #333;
   line-height: 1.6;
   padding: 20px;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Header */
+/* ================================
+   HEADER & NAVBAR
+================================ */
 header {
   background-color: #1e1e2f;
   color: white;
@@ -25,6 +34,7 @@ header {
 header h1 {
   margin-bottom: 10px;
   font-size: 2em;
+  letter-spacing: 1px;
 }
 
 nav ul {
@@ -36,16 +46,35 @@ nav ul {
 }
 
 nav a {
+  position: relative;
   text-decoration: none;
   color: #ffffffcc;
   font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: #00bfff;
+  transition: width 0.3s ease;
 }
 
 nav a:hover {
   color: #00bfff;
 }
 
-/* Section spacing */
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ================================
+   SECTION BASE STYLES
+================================ */
 section {
   margin-bottom: 50px;
   max-width: 800px;
@@ -59,14 +88,34 @@ h2 {
   margin-bottom: 20px;
   border-bottom: 2px solid #ddd;
   padding-bottom: 5px;
+  transition: color 0.3s ease;
 }
 
-/* About */
+/* ================================
+   FADE-IN ANIMATIONS
+================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================
+   ABOUT SECTION
+================================ */
 #about p {
   font-size: 1.1em;
+  line-height: 1.8;
 }
 
-/* Skills */
+/* ================================
+   SKILLS SECTION
+================================ */
 #skills ul {
   display: flex;
   flex-wrap: wrap;
@@ -78,107 +127,83 @@ h2 {
 #skills li {
   background-color: #e0e0e0;
   padding: 8px 15px;
-  border-radius: 5px;
-  color: black; /* Always black text */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 8px;
+  color: black;
+  transition: transform 0.25s ease, background-color 0.3s ease, color 0.3s ease;
+  cursor: default;
+  font-weight: 500;
 }
 
-/* Skill boxes */
+#skills li:hover {
+  background-color: #4a90e2;
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Optional Skill Boxes */
 .skill-box {
-  background-color: #f0f0f0; /* light background */
-  color: black;              /* text always black */
+  background-color: #f0f0f0;
+  color: black;
   padding: 20px;
   border-radius: 8px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Projects */
+/* ================================
+   PROJECTS SECTION
+================================ */
 #projects .project {
   margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#projects .project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 #projects h3 {
   margin-bottom: 5px;
+  font-size: 1.3em;
+}
+
+#projects p {
+  margin-bottom: 10px;
+  font-size: 1em;
 }
 
 #projects a {
+  display: inline-block;
   color: #0077cc;
   text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 #projects a:hover {
-  text-decoration: underline;
+  color: #66b3ff;
+  text-shadow: 0 0 6px rgba(102, 179, 255, 0.8);
 }
 
-/* Contact */
+/* ================================
+   CONTACT SECTION
+================================ */
 #contact a {
   color: #0077cc;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 #contact a:hover {
+  color: #66b3ff;
   text-decoration: underline;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #1e1e2f;
-  color: white;
-  margin-top: 50px;
-}
-
-#backToTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #1e1e2f;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: none;
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-#backToTop:hover {
-  background-color: #00bfff;
-}
-
-/* Theme Toggle */
-#themeToggle {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  background-color: #1e1e2f;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-  background-color: #2c2f42; /* lighter dark blue-gray */
-  color: #e0e0e0;            /* softer light text */
-}
-
-body.dark-mode header,
-body.dark-mode footer {
-  background-color: #23263a; /* slightly lighter than pure black */
-  color: #e0e0e0;
-}
-
-body.dark-mode a {
-  color: #00bfff;
-}
-
-/* Email Copy Button */
+/* Copy Email Button */
 #copyEmail {
   margin-left: 10px;
   padding: 5px 10px;
@@ -188,49 +213,101 @@ body.dark-mode a {
   background-color: #1e1e2f;
   color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #copyEmail:hover {
   background-color: #00bfff;
+  transform: scale(1.05);
 }
 
-/* Theme toggle styles */
+/* ================================
+   FOOTER
+================================ */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #1e1e2f;
+  color: white;
+  margin-top: 50px;
+}
+
+/* ================================
+   BACK TO TOP BUTTON
+================================ */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1e1e2f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#backToTop:hover {
+  background-color: #00bfff;
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* ================================
+   THEME TOGGLE BUTTON
+================================ */
+#themeToggle {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background-color: #1e1e2f;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#themeToggle:hover {
+  background-color: #00bfff;
+  transform: scale(1.05);
+}
+
+/* ================================
+   DARK MODE
+================================ */
 body.dark-mode {
-  /* background-color set above */
-  color: #e0e0e0;
-}
-
-/* Ensure header, section, and footer text is also lighter */
-body.dark-mode header,
-body.dark-mode section,
-body.dark-mode footer {
-  color: #e0e0e0;
-}
-
-/* Optional: adjust navbar, buttons, and other UI elements */
-body.dark-mode nav {
   background-color: #2c2f42;
+  color: #e0e0e0;
 }
 
-body.dark-mode button {
-  background-color: #3a3f5a;
-  color: #f5f5f5;
-  border: 1px solid #555b7a;
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #23263a;
+  color: #e0e0e0;
 }
 
-body.dark-mode button:hover {
-  background-color: #4e5370;
+body.dark-mode a {
+  color: #00bfff;
 }
 
 body.dark-mode h2 {
   color: #e0e0e0;
 }
 
-/* Dark mode skill list items and skill boxes */
 body.dark-mode #skills li,
 body.dark-mode .skill-box {
-  background-color: #3a3f5a; /* lighter dark slate blue */
-  color: #f5f5f5;            /* near-white font for readability */
+  background-color: #3a3f5a;
+  color: #f5f5f5;
   border: 1px solid #4e5370;
-  box-shadow: none;
+}
+
+body.dark-mode #projects .project {
+  background-color: #2c2f42;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
