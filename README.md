@@ -101,14 +101,10 @@ Mobile: Toggle button is available inside the hamburger menu dropdown.
 ---
 
 ## 🧪 Future Enhancements
-
-Improved navbar design with a better title.
-
-Enhanced animations for a more dynamic experience.
-
-Additional projects with detailed previews.
-
-Deployment on GitHub Pages or custom domain.
+* Improved navbar design with a better title.
+* Enhanced animations for a more dynamic experience.
+* Additional projects with detailed previews.
+* Deployment on GitHub Pages or custom domain.
 
 ---
 
