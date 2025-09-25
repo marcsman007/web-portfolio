@@ -110,8 +110,8 @@ Mobile: Toggle button is available inside the hamburger menu dropdown.
 
 ## 📬 Contact
 * Email: macaburasmarcjayson@gmail.com
-* LinkedIn: Marc Jayson Macaburas
-* GitHub: marcsman007
+* LinkedIn: [Marc Jayson Macaburas](www.linkedin.com/in/marc-jayson-macaburas)
+* GitHub: [marcsman007](https://github.com/marcsman007)
 
 ---
 
