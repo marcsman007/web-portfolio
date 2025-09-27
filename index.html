@@ -12,6 +12,34 @@
   </script>
 
   <!-- Custom Styles -->
+  <style>
+    /* Infinity Symbol Pulse Animation */
+    @keyframes infinityPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    .infinity-symbol {
+      display: inline-block;
+      animation: infinityPulse 2s infinite ease-in-out;
+    }
+
+    /* Resume Download Notification Animation */
+    @keyframes fadeOut {
+      0% { opacity: 1; transform: translateY(0); }
+      80% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-10px); }
+    }
+    .notification {
+      animation: fadeOut 3s ease forwards;
+    }
+  </style>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
@@ -19,18 +47,21 @@
   <!-- HEADER -->
   <header class="bg-gray-900 dark:bg-gray-800 text-white sticky top-0 z-50 shadow-md transition-colors duration-500">
     <div class="container mx-auto flex justify-between items-center px-4 py-4">
-      <h1 class="text-2xl font-bold">Marc Jayson "MJ" Macaburas</h1>
+      <!-- Logo / Name -->
+      <h1 class="text-2xl font-bold tracking-wide">
+        Dev<span class="text-yellow-400 infinity-symbol">∞</span>ps
+      </h1>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex space-x-6">
-        <a href="#hero" class="nav-link hover:text-yellow-400 transition">Home</a>
-        <a href="#about" class="nav-link hover:text-yellow-400 transition">About</a>
-        <a href="#skills" class="nav-link hover:text-yellow-400 transition">Skills</a>
-        <a href="#projects" class="nav-link hover:text-yellow-400 transition">Projects</a>
-        <a href="#contact" class="nav-link hover:text-yellow-400 transition">Contact</a>
-      </nav>
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-6">
+          <a href="#hero" class="nav-link relative hover:text-yellow-400 transition">Home</a>
+          <a href="#about" class="nav-link relative hover:text-yellow-400 transition">About</a>
+          <a href="#skills" class="nav-link relative hover:text-yellow-400 transition">Skills</a>
+          <a href="#projects" class="nav-link relative hover:text-yellow-400 transition">Projects</a>
+          <a href="#contact" class="nav-link relative hover:text-yellow-400 transition">Contact</a>
+        </nav>
 
-      <div class="flex items-center space-x-4">
         <!-- Dark Mode Toggle (Desktop) -->
         <button id="themeToggle" class="hidden md:block p-2 rounded bg-yellow-500 hover:bg-yellow-600 text-white transition">🌙</button>
 
@@ -44,7 +75,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 dark:bg-gray-800 hidden flex-col space-y-2 px-4 py-4">
+    <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 dark:bg-gray-800 hidden flex-col space-y-2 px-4 py-4 animate-slide-down">
       <a href="#hero" class="nav-link block text-white hover:text-yellow-400 transition">Home</a>
       <a href="#about" class="nav-link block text-white hover:text-yellow-400 transition">About</a>
       <a href="#skills" class="nav-link block text-white hover:text-yellow-400 transition">Skills</a>
@@ -56,7 +87,10 @@
 
   <!-- HERO SECTION -->
   <section id="hero" class="h-screen flex flex-col justify-center items-center text-center px-4 fade-in" data-delay="0">
-    <h2 class="text-4xl md:text-6xl font-bold mb-6 fade-in" data-delay="100">Hi, I'm Marc</h2>
+    <h2 class="text-4xl md:text-6xl font-bold mb-2 fade-in" data-delay="100">Hi, I'm Marc</h2>
+    <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 fade-in" data-delay="150">
+      Aspiring DevOps Engineer
+    </p>
     <a href="#about" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full text-lg transition transform hover:scale-105 hover:shadow-lg fade-in" data-delay="200">
       Learn more about me
     </a>
@@ -70,6 +104,21 @@
       and post-sales technical support. I am also knowledgeable in DevOps tools. I enjoy solving
       problems and building efficient, scalable systems.
     </p>
+
+    <!-- Download Resume Button -->
+    <div class="mt-8 fade-in" data-delay="300">
+      <a href="files/Marc_Jayson_Macaburas_Resume.pdf" 
+         download
+         id="downloadResume"
+         class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full text-lg transition transform hover:scale-105 hover:shadow-lg">
+        📄 Download Resume
+      </a>
+    </div>
+
+    <!-- Download Confirmation Notification -->
+    <div id="resumeNotification" class="hidden fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg text-sm">
+      Resume downloaded successfully!
+    </div>
   </section>
 
   <!-- SKILLS SECTION -->
@@ -132,5 +181,19 @@
 
   <!-- Scripts -->
   <script src="script.js"></script>
+  <script>
+    // Resume download notification
+    document.getElementById('downloadResume').addEventListener('click', function() {
+      const notification = document.getElementById('resumeNotification');
+      notification.classList.remove('hidden');
+      notification.classList.add('notification');
+
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        notification.classList.add('hidden');
+        notification.classList.remove('notification');
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
