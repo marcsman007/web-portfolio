@@ -1,4 +1,6 @@
+// ======================
 // Hamburger toggle
+// ======================
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -7,7 +9,9 @@ hamburger.addEventListener('click', () => {
   mobileMenu.classList.toggle('hidden');
 });
 
+// ======================
 // Dark mode toggle
+// ======================
 const themeToggle = document.getElementById('themeToggle');
 const themeToggleMobile = document.getElementById('themeToggleMobile');
 
@@ -17,14 +21,16 @@ const themeToggleMobile = document.getElementById('themeToggleMobile');
   });
 });
 
-// Intersection Observer for fade-in animations with stagger
+// ======================
+// Intersection Observer for fade-in animations
+// ======================
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const delay = entry.target.dataset.delay || 0;
       setTimeout(() => {
         entry.target.classList.add('visible');
-        // Fade in nested images
+        // Fade in nested images or spans inside fade-in elements
         entry.target.querySelectorAll('img, span').forEach(el => el.classList.add('visible'));
       }, delay);
     }
@@ -34,7 +40,9 @@ const observer = new IntersectionObserver(entries => {
 // Observe all fade-in elements
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+// ======================
 // Smooth scroll for navigation links
+// ======================
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -50,32 +58,15 @@ document.querySelectorAll('.nav-link').forEach(link => {
 });
 
 // ======================
-// Skills Section Chessboard Animation with fade-in
+// Skills Section Entry Animation
 // ======================
-const skillsGrid = document.querySelector('#skills .grid');
-if (skillsGrid) {
-  const skillCards = skillsGrid.querySelectorAll('.skill-card');
+document.addEventListener("DOMContentLoaded", () => {
+  const skillCards = document.querySelectorAll('.skill-card');
 
-  // Initial state: straight line + opacity 0
-  skillCards.forEach(card => {
-    card.style.marginTop = '0px';
-    card.style.opacity = 0;
-    card.style.transition = 'all 0.7s ease';
-  });
-
-  // Fade-in stagger
+  // Staggered fade & pop animation for each icon
   skillCards.forEach((card, index) => {
     setTimeout(() => {
-      card.style.opacity = 1;
-    }, index * 150); // stagger 150ms each
+      card.classList.add('loaded'); // Trigger the CSS transition
+    }, index * 150); // staggered by 150ms per card
   });
-
-  // After all cards appear, apply chessboard alternation
-  setTimeout(() => {
-    skillCards.forEach((card, index) => {
-      if (index % 2 !== 0) {
-        card.style.marginTop = '150px'; // alternate vertical offset
-      }
-    });
-  }, skillCards.length * 150 + 500); // slight delay after fade-in
-}
+});

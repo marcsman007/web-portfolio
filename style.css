@@ -1,4 +1,6 @@
-/* Hamburger animation */
+/* ===============================
+   Hamburger animation
+   =============================== */
 .hamburger span {
   display: block;
   width: 25px;
@@ -19,7 +21,9 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Fade-in base animation */
+/* ===============================
+   Fade-in base animation
+   =============================== */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -30,7 +34,9 @@
   transform: translateY(0);
 }
 
-/* Project cards */
+/* ===============================
+   Project cards
+   =============================== */
 .project-card {
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -58,7 +64,9 @@
   color: #fbbf24;
 }
 
-/* Footer links */
+/* ===============================
+   Footer links
+   =============================== */
 .footer-link {
   color: #facc15;
   transition: color 0.3s ease;
@@ -126,28 +134,33 @@
   line-height: 1.5;
 }
 
-/* =======================
+/* ===============================
    Skills Section Styling
-   ======================= */
+   =============================== */
 
 /* Base card style */
 .skill-card {
-  background-color: transparent; /* no colored background */
+  background-color: transparent;
   color: inherit;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  transition: transform 0.5s ease, box-shadow 0.3s ease, margin-top 0.7s ease;
+  transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.6s ease;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Start hidden for entry animation */
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
 }
 
-/* Skills Section Title */
-#skills h2 {
-  margin-bottom: .25rem; /* adjust this value as needed */
+/* Entry animation: fade & pop once */
+.skill-card.loaded {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-/* Subtle hover effect */
+/* Hover effect ONLY */
 .skill-card:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);

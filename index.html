@@ -12,6 +12,64 @@
   </script>
 
   <!-- Custom Styles -->
+  <style>
+    /* Fade-in upward animation */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Icons default hidden, animated in with stagger */
+    .skill-icon {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards, floatGlow 3s ease-in-out infinite;
+    }
+
+    /* Stagger fade-in delays for 15 icons */
+    .skill-icon:nth-child(1) { animation-delay: 0.1s, 0.1s; }
+    .skill-icon:nth-child(2) { animation-delay: 0.2s, 0.2s; }
+    .skill-icon:nth-child(3) { animation-delay: 0.3s, 0.3s; }
+    .skill-icon:nth-child(4) { animation-delay: 0.4s, 0.4s; }
+    .skill-icon:nth-child(5) { animation-delay: 0.5s, 0.5s; }
+    .skill-icon:nth-child(6) { animation-delay: 0.6s, 0.6s; }
+    .skill-icon:nth-child(7) { animation-delay: 0.7s, 0.7s; }
+    .skill-icon:nth-child(8) { animation-delay: 0.8s, 0.8s; }
+    .skill-icon:nth-child(9) { animation-delay: 0.9s, 0.9s; }
+    .skill-icon:nth-child(10) { animation-delay: 1.0s, 1.0s; }
+    .skill-icon:nth-child(11) { animation-delay: 1.1s, 1.1s; }
+    .skill-icon:nth-child(12) { animation-delay: 1.2s, 1.2s; }
+    .skill-icon:nth-child(13) { animation-delay: 1.3s, 1.3s; }
+    .skill-icon:nth-child(14) { animation-delay: 1.4s, 1.4s; }
+    .skill-icon:nth-child(15) { animation-delay: 1.5s, 1.5s; }
+
+    /* Hover effect - subtle scale and stronger glow */
+    .skill-icon:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 15px #facc15);
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Infinity symbol alternate spin animation */
+    @keyframes spinPause {
+      0% { transform: rotate(0deg); }
+      40% { transform: rotate(360deg); }
+      50% { transform: rotate(360deg); }
+      90% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .infinity-symbol {
+      display: inline-block;
+      animation: spinPause 3.5s ease-in-out infinite;
+    }
+  </style>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
@@ -19,12 +77,9 @@
   <!-- HEADER -->
   <header class="bg-gray-900 dark:bg-gray-800 text-white sticky top-0 z-50 shadow-md transition-colors duration-500">
     <div class="container mx-auto flex justify-between items-center px-4 py-4">
-      <!-- Logo / Name -->
       <h1 class="text-2xl font-bold tracking-wide">
         Dev<span class="text-yellow-400 infinity-symbol">∞</span>ps
       </h1>
-
-      <!-- Desktop Navigation -->
       <div class="flex items-center space-x-6">
         <nav class="hidden md:flex space-x-6">
           <a href="#hero" class="nav-link relative hover:text-yellow-400 transition">Home</a>
@@ -33,11 +88,7 @@
           <a href="#projects" class="nav-link relative hover:text-yellow-400 transition">Projects</a>
           <a href="#contact" class="nav-link relative hover:text-yellow-400 transition">Contact</a>
         </nav>
-
-        <!-- Dark Mode Toggle (Desktop) -->
         <button id="themeToggle" class="hidden md:block p-2 rounded bg-yellow-500 hover:bg-yellow-600 text-white transition">🌙</button>
-
-        <!-- Hamburger Button -->
         <button id="hamburger" class="md:hidden hamburger flex flex-col justify-center items-center p-2 focus:outline-none relative z-50">
           <span></span>
           <span></span>
@@ -45,8 +96,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 dark:bg-gray-800 hidden flex-col space-y-2 px-4 py-4 animate-slide-down">
       <a href="#hero" class="nav-link block text-white hover:text-yellow-400 transition">Home</a>
       <a href="#about" class="nav-link block text-white hover:text-yellow-400 transition">About</a>
@@ -80,7 +129,6 @@
       and post-sales technical support. I am also knowledgeable in DevOps tools. I enjoy solving
       problems and building efficient, scalable systems.
     </p>
-
     <div class="mt-8 fade-in" data-delay="300">
       <a href="files/Marc_Jayson_Macaburas_Resume.pdf" 
          download
@@ -89,7 +137,6 @@
         📄 Download Resume
       </a>
     </div>
-
     <div id="resumeNotification" class="hidden fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg text-sm">
       Resume downloaded successfully!
     </div>
@@ -98,40 +145,30 @@
   <!-- SKILLS SECTION -->
   <section id="skills" class="bg-gray-100 dark:bg-gray-800 py-20 transition-colors duration-500">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8 text-center fade-in" data-delay="0">Skills</h2>
-      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="100">
-          <img src="files/icons/linux-svgrepo-com.svg" alt="Linux" class="w-16 h-16 mb-2">
+      <h2 class="text-3xl font-bold mb-12 text-center fade-in" data-delay="0">Skills</h2>
+
+      <div class="flex flex-col items-center space-y-8">
+        <!-- Top row - 8 icons -->
+        <div class="flex flex-wrap justify-center gap-8">
+          <img src="files/icons/linux-svgrepo-com.svg" alt="Linux" class="skill-icon w-16 h-16">
+          <img src="files/icons/ci-cd-svgrepo-com.svg" alt="CI/CD" class="skill-icon w-16 h-16">
+          <img src="files/icons/docker-svgrepo-com.svg" alt="Docker" class="skill-icon w-16 h-16">
+          <img src="files/icons/ansible-svgrepo-com.svg" alt="Ansible" class="skill-icon w-16 h-16">
+          <img src="files/icons/aws-svgrepo-com.svg" alt="AWS" class="skill-icon w-16 h-16">
+          <img src="files/icons/terraform-svgrepo-com.svg" alt="Terraform" class="skill-icon w-16 h-16">
+          <img src="files/icons/kubernetes-svgrepo-com.svg" alt="Kubernetes" class="skill-icon w-16 h-16">
+          <img src="files/icons/python-svgrepo-com.svg" alt="Python" class="skill-icon w-16 h-16">
         </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="200">
-          <img src="files/icons/ci-cd-svgrepo-com.svg" alt="CI/CD" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="300">
-          <img src="files/icons/docker-svgrepo-com.svg" alt="Docker" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="400">
-          <img src="files/icons/ansible-svgrepo-com.svg" alt="Ansible" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="500">
-          <img src="files/icons/aws-svgrepo-com.svg" alt="AWS" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="600">
-          <img src="files/icons/terraform-svgrepo-com.svg" alt="Terraform" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="700">
-          <img src="files/icons/kubernetes-svgrepo-com.svg" alt="Kubernetes" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="800">
-          <img src="files/icons/technical-support-customer-svgrepo-com.svg" alt="Technical Support" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="900">
-          <img src="files/icons/git-svgrepo-com.svg" alt="Git" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="1000">
-          <img src="files/icons/github-142-svgrepo-com.svg" alt="GitHub" class="w-16 h-16 mb-2">
-        </div>
-        <div class="skill-card flex flex-col items-center fade-in" data-delay="1100">
-          <img src="files/icons/jenkins-svgrepo-com.svg" alt="Jenkins" class="w-16 h-16 mb-2">
+
+        <!-- Bottom row - 7 icons -->
+        <div class="flex flex-wrap justify-center gap-8">
+          <img src="files/icons/bash-svgrepo-com.svg" alt="Bash" class="skill-icon w-16 h-16">
+          <img src="files/icons/prometheus-svgrepo-com.svg" alt="Prometheus" class="skill-icon w-16 h-16">
+          <img src="files/icons/grafana-svgrepo-com.svg" alt="Grafana" class="skill-icon w-16 h-16">
+          <img src="files/icons/technical-support-customer-svgrepo-com.svg" alt="Technical Support" class="skill-icon w-16 h-16">
+          <img src="files/icons/git-svgrepo-com.svg" alt="Git" class="skill-icon w-16 h-16">
+          <img src="files/icons/github-142-svgrepo-com.svg" alt="GitHub" class="skill-icon w-16 h-16">
+          <img src="files/icons/jenkins-svgrepo-com.svg" alt="Jenkins" class="skill-icon w-16 h-16">
         </div>
       </div>
     </div>
