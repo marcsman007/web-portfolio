@@ -30,28 +30,6 @@
   transform: translateY(0);
 }
 
-/* Skill cards */
-.skill-card {
-  background: var(--tw-bg-opacity);
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-  color: #111827;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dark .skill-card {
-  background-color: #374151;
-  color: #f9fafb;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px) scale(1.05);
-  background-color: #facc15;
-  color: #000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
 /* Project cards */
 .project-card {
   padding: 1.5rem;
@@ -87,4 +65,111 @@
 }
 .footer-link:hover {
   color: #fbbf24;
+}
+
+/* ================================
+   Infinity Symbol Alternating Spin
+   ================================ */
+.infinity-symbol {
+  display: inline-block;
+  animation: spinInfinity 7s ease-in-out infinite; /* total cycle: 2s spin + 1.5s pause + 2s reverse spin + 1.5s pause */
+}
+
+@keyframes spinInfinity {
+  0%   { transform: rotate(0deg); }
+  28.5% { transform: rotate(360deg); }    /* 2s spin clockwise */
+  42.85% { transform: rotate(360deg); }   /* 1.5s pause */
+  71.35% { transform: rotate(0deg); }     /* 2s spin counterclockwise */
+  85.7% { transform: rotate(0deg); }      /* 1.5s pause */
+  100% { transform: rotate(0deg); }       /* loop back */
+}
+
+/* ================================
+   Hero Section with Cloud Background
+   ================================ */
+.hero-section {
+  position: relative;
+  background: url('./files/cloud-bg.jpg') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+/* Overlay stays fixed regardless of mode */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* fixed overlay */
+  z-index: 1;
+}
+
+/* Hero content stays the same, no color transition */
+.hero-section .hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  color: #ffffff; /* always white */
+  transition: none;
+}
+
+.hero-section h1,
+.hero-section h2 {
+  line-height: 1.2;
+}
+
+.hero-section p {
+  line-height: 1.5;
+}
+
+/* =======================
+   Skills Section Styling
+   ======================= */
+
+/* Base card style */
+.skill-card {
+  background-color: transparent; /* no colored background */
+  color: inherit;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: transform 0.5s ease, box-shadow 0.3s ease, margin-top 0.7s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Skills Section Title */
+#skills h2 {
+  margin-bottom: .25rem; /* adjust this value as needed */
+}
+
+/* Subtle hover effect */
+.skill-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Grid layout */
+#skills .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+
+/* Icon size */
+.skill-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* Hide text under icons */
+.skill-card span {
+  display: none;
 }

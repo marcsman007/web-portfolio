@@ -12,34 +12,6 @@
   </script>
 
   <!-- Custom Styles -->
-  <style>
-    /* Infinity Symbol Pulse Animation */
-    @keyframes infinityPulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-      }
-    }
-
-    .infinity-symbol {
-      display: inline-block;
-      animation: infinityPulse 2s infinite ease-in-out;
-    }
-
-    /* Resume Download Notification Animation */
-    @keyframes fadeOut {
-      0% { opacity: 1; transform: translateY(0); }
-      80% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(-10px); }
-    }
-    .notification {
-      animation: fadeOut 3s ease forwards;
-    }
-  </style>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
@@ -86,14 +58,18 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section id="hero" class="h-screen flex flex-col justify-center items-center text-center px-4 fade-in" data-delay="0">
-    <h2 class="text-4xl md:text-6xl font-bold mb-2 fade-in" data-delay="100">Hi, I'm Marc</h2>
-    <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 fade-in" data-delay="150">
-      Aspiring DevOps Engineer
-    </p>
-    <a href="#about" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full text-lg transition transform hover:scale-105 hover:shadow-lg fade-in" data-delay="200">
-      Learn more about me
-    </a>
+  <section id="hero" class="hero-section h-screen flex flex-col justify-center items-center text-center fade-in relative" data-delay="0">
+    <div class="hero-content">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4 fade-in" data-delay="100">
+        Building reliable systems, <br class="hidden md:block"> one deployment at a time.
+      </h2>
+      <p class="text-lg md:text-2xl mb-6 fade-in" data-delay="200">
+        DevOps Engineer in the making — cloud, automation, and CI/CD enthusiast.
+      </p>
+      <a href="#about" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full text-lg transition transform hover:scale-105 hover:shadow-lg fade-in" data-delay="300">
+        Learn more about me
+      </a>
+    </div>
   </section>
 
   <!-- ABOUT SECTION -->
@@ -105,7 +81,6 @@
       problems and building efficient, scalable systems.
     </p>
 
-    <!-- Download Resume Button -->
     <div class="mt-8 fade-in" data-delay="300">
       <a href="files/Marc_Jayson_Macaburas_Resume.pdf" 
          download
@@ -115,7 +90,6 @@
       </a>
     </div>
 
-    <!-- Download Confirmation Notification -->
     <div id="resumeNotification" class="hidden fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg text-sm">
       Resume downloaded successfully!
     </div>
@@ -125,20 +99,41 @@
   <section id="skills" class="bg-gray-100 dark:bg-gray-800 py-20 transition-colors duration-500">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-8 text-center fade-in" data-delay="0">Skills</h2>
-      <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
-        <li class="skill-card fade-in" data-delay="100">Pre-sales Solution Design</li>
-        <li class="skill-card fade-in" data-delay="200">Technical Support</li>
-        <li class="skill-card fade-in" data-delay="300">Customer Service</li>
-        <li class="skill-card fade-in" data-delay="400">Linux</li>
-        <li class="skill-card fade-in" data-delay="500">Bash & Python Scripting</li>
-        <li class="skill-card fade-in" data-delay="600">Cloud</li>
-        <li class="skill-card fade-in" data-delay="700">AWS</li>
-        <li class="skill-card fade-in" data-delay="800">Docker</li>
-        <li class="skill-card fade-in" data-delay="900">Ansible</li>
-        <li class="skill-card fade-in" data-delay="1000">CI/CD</li>
-        <li class="skill-card fade-in" data-delay="1100">Infrastructure-as-Code</li>
-        <li class="skill-card fade-in" data-delay="1200">Kubernetes</li>
-      </ul>
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 justify-items-center">
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="100">
+          <img src="files/icons/linux-svgrepo-com.svg" alt="Linux" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="200">
+          <img src="files/icons/ci-cd-svgrepo-com.svg" alt="CI/CD" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="300">
+          <img src="files/icons/docker-svgrepo-com.svg" alt="Docker" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="400">
+          <img src="files/icons/ansible-svgrepo-com.svg" alt="Ansible" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="500">
+          <img src="files/icons/aws-svgrepo-com.svg" alt="AWS" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="600">
+          <img src="files/icons/terraform-svgrepo-com.svg" alt="Terraform" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="700">
+          <img src="files/icons/kubernetes-svgrepo-com.svg" alt="Kubernetes" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="800">
+          <img src="files/icons/technical-support-customer-svgrepo-com.svg" alt="Technical Support" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="900">
+          <img src="files/icons/git-svgrepo-com.svg" alt="Git" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="1000">
+          <img src="files/icons/github-142-svgrepo-com.svg" alt="GitHub" class="w-16 h-16 mb-2">
+        </div>
+        <div class="skill-card flex flex-col items-center fade-in" data-delay="1100">
+          <img src="files/icons/jenkins-svgrepo-com.svg" alt="Jenkins" class="w-16 h-16 mb-2">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -188,7 +183,6 @@
       notification.classList.remove('hidden');
       notification.classList.add('notification');
 
-      // Hide notification after 3 seconds
       setTimeout(() => {
         notification.classList.add('hidden');
         notification.classList.remove('notification');
