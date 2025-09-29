@@ -26,11 +26,13 @@
    =============================== */
 .fade-in {
   opacity: 0;
+  visibility: hidden;
   transform: translateY(20px);
-  transition: all 0.7s ease-out;
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out, visibility 0.7s;
 }
 .fade-in.visible {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
 }
 
@@ -80,16 +82,16 @@
    ================================ */
 .infinity-symbol {
   display: inline-block;
-  animation: spinInfinity 7s ease-in-out infinite; /* total cycle: 2s spin + 1.5s pause + 2s reverse spin + 1.5s pause */
+  animation: spinInfinity 7s ease-in-out infinite;
 }
 
 @keyframes spinInfinity {
   0%   { transform: rotate(0deg); }
-  28.5% { transform: rotate(360deg); }    /* 2s spin clockwise */
-  42.85% { transform: rotate(360deg); }   /* 1.5s pause */
-  71.35% { transform: rotate(0deg); }     /* 2s spin counterclockwise */
-  85.7% { transform: rotate(0deg); }      /* 1.5s pause */
-  100% { transform: rotate(0deg); }       /* loop back */
+  28.5% { transform: rotate(360deg); }
+  42.85% { transform: rotate(360deg); }
+  71.35% { transform: rotate(0deg); }
+  85.7% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* ================================
@@ -107,82 +109,63 @@
   overflow: hidden;
 }
 
-/* Overlay stays fixed regardless of mode */
 .hero-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35); /* fixed overlay */
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
 
-/* Hero content stays the same, no color transition */
 .hero-section .hero-content {
   position: relative;
   z-index: 10;
   max-width: 800px;
-  color: #ffffff; /* always white */
-  transition: none;
-}
-
-.hero-section h1,
-.hero-section h2 {
-  line-height: 1.2;
-}
-
-.hero-section p {
-  line-height: 1.5;
+  color: #ffffff;
 }
 
 /* ===============================
    Skills Section Styling
    =============================== */
-
-/* Base card style */
 .skill-card {
   background-color: transparent;
   color: inherit;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+  transition: transform 0.5s ease, opacity 0.6s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* Start hidden for entry animation */
   opacity: 0;
+  visibility: hidden;
   transform: translateY(20px) scale(0.95);
 }
-
-/* Entry animation: fade & pop once */
 .skill-card.loaded {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0) scale(1);
 }
 
-/* Hover effect ONLY */
-.skill-card:hover {
+/* Hover glow now only on icon image, not container */
+.skill-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.skill-card:hover img {
   transform: scale(1.1);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.8)); /* yellow glow on icon only */
 }
 
-/* Grid layout */
+.skill-card span {
+  display: none;
+}
+
 #skills .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 2rem;
   justify-items: center;
   align-items: center;
-}
-
-/* Icon size */
-.skill-card img {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-}
-
-/* Hide text under icons */
-.skill-card span {
-  display: none;
 }

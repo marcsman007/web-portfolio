@@ -22,7 +22,7 @@ const themeToggleMobile = document.getElementById('themeToggleMobile');
 });
 
 // ======================
-// Intersection Observer for fade-in animations
+// Fade-in animations with Intersection Observer
 // ======================
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -30,15 +30,25 @@ const observer = new IntersectionObserver(entries => {
       const delay = entry.target.dataset.delay || 0;
       setTimeout(() => {
         entry.target.classList.add('visible');
-        // Fade in nested images or spans inside fade-in elements
-        entry.target.querySelectorAll('img, span').forEach(el => el.classList.add('visible'));
       }, delay);
+      observer.unobserve(entry.target); // animate only once
     }
   });
 }, { threshold: 0.2 });
 
 // Observe all fade-in elements
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ======================
+// Pre-show hero and about sections to avoid flash
+// ======================
+window.addEventListener('DOMContentLoaded', () => {
+  // Show hero and about immediately
+  const immediateSections = document.querySelectorAll('#hero, #about');
+  immediateSections.forEach(section => {
+    section.classList.add('visible');
+  });
+});
 
 // ======================
 // Smooth scroll for navigation links
@@ -58,15 +68,13 @@ document.querySelectorAll('.nav-link').forEach(link => {
 });
 
 // ======================
-// Skills Section Entry Animation
+// Resume download notification
 // ======================
-document.addEventListener("DOMContentLoaded", () => {
-  const skillCards = document.querySelectorAll('.skill-card');
+document.getElementById('downloadResume').addEventListener('click', function() {
+  const notification = document.getElementById('resumeNotification');
+  notification.classList.remove('hidden');
 
-  // Staggered fade & pop animation for each icon
-  skillCards.forEach((card, index) => {
-    setTimeout(() => {
-      card.classList.add('loaded'); // Trigger the CSS transition
-    }, index * 150); // staggered by 150ms per card
-  });
+  setTimeout(() => {
+    notification.classList.add('hidden');
+  }, 3000);
 });

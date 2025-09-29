@@ -12,65 +12,13 @@
   </script>
 
   <!-- Custom Styles -->
-  <style>
-    /* Fade-in upward animation */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Icons default hidden, animated in with stagger */
-    .skill-icon {
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    /* Stagger fade-in delays for 15 icons */
-    .skill-icon:nth-child(1) { animation-delay: 0.1s; }
-    .skill-icon:nth-child(2) { animation-delay: 0.2s; }
-    .skill-icon:nth-child(3) { animation-delay: 0.3s; }
-    .skill-icon:nth-child(4) { animation-delay: 0.4s; }
-    .skill-icon:nth-child(5) { animation-delay: 0.5s; }
-    .skill-icon:nth-child(6) { animation-delay: 0.6s; }
-    .skill-icon:nth-child(7) { animation-delay: 0.7s; }
-    .skill-icon:nth-child(8) { animation-delay: 0.8s; }
-    .skill-icon:nth-child(9) { animation-delay: 0.9s; }
-    .skill-icon:nth-child(10) { animation-delay: 1.0s; }
-    .skill-icon:nth-child(11) { animation-delay: 1.1s; }
-    .skill-icon:nth-child(12) { animation-delay: 1.2s; }
-    .skill-icon:nth-child(13) { animation-delay: 1.3s; }
-    .skill-icon:nth-child(14) { animation-delay: 1.4s; }
-    .skill-icon:nth-child(15) { animation-delay: 1.5s; }
-
-    /* Hover effect - subtle scale and stronger glow */
-    .skill-icon:hover {
-      transform: scale(1.15);
-      filter: drop-shadow(0 0 15px #facc15);
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    /* Infinity symbol alternate spin animation */
-    @keyframes spinPause {
-      0% { transform: rotate(0deg); }
-      40% { transform: rotate(360deg); }
-      50% { transform: rotate(360deg); }
-      90% { transform: rotate(0deg); }
-      100% { transform: rotate(0deg); }
-    }
-
-    .infinity-symbol {
-      display: inline-block;
-      animation: spinPause 3.5s ease-in-out infinite;
-    }
-  </style>
-
   <link rel="stylesheet" href="style.css" />
+
+  <!-- FOUC fix: hide fade-in elements initially -->
+  <style>
+    .fade-in { opacity: 0; transform: translateY(20px); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-500">
 
@@ -107,30 +55,30 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section id="hero" class="hero-section h-screen flex flex-col justify-center items-center text-center fade-in relative">
+  <section id="hero" class="hero-section h-screen flex flex-col justify-center items-center text-center fade-in" data-delay="0">
     <div class="hero-content">
-      <h2 class="text-4xl md:text-6xl font-bold mb-4 fade-in">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4 fade-in" data-delay="100">
         Building reliable systems, <br class="hidden md:block"> one deployment at a time.
       </h2>
-      <p class="text-lg md:text-2xl mb-6 fade-in">
+      <p class="text-lg md:text-2xl mb-6 fade-in" data-delay="200">
         DevOps Engineer in the making — cloud, automation, and CI/CD enthusiast.
       </p>
-      <a href="#about" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full text-lg transition transform hover:scale-105 hover:shadow-lg fade-in">
+      <a href="#about" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full text-lg transition transform hover:scale-105 hover:shadow-lg fade-in" data-delay="300">
         Learn more about me
       </a>
     </div>
   </section>
 
-  <!-- ABOUT SECTION (FULL WIDTH) -->
-  <section id="about" class="w-full px-4 py-20 text-center bg-gray-200 dark:bg-gray-800 transition-colors duration-500">
+  <!-- ABOUT SECTION -->
+  <section id="about" class="w-full px-4 py-20 text-center bg-gray-300 dark:bg-gray-800 transition-colors duration-500 fade-in" data-delay="0">
     <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
-      <p class="text-lg md:text-xl leading-relaxed">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 fade-in" data-delay="100">About Me</h2>
+      <p class="text-lg md:text-xl leading-relaxed fade-in" data-delay="200">
         Hi! I'm Marc, a passionate tech specialist with experience in pre-sales solution design
         and post-sales technical support. I am also knowledgeable in DevOps tools. I enjoy solving
         problems and building efficient, scalable systems.
       </p>
-      <div class="mt-8">
+      <div class="mt-8 fade-in" data-delay="300">
         <a href="files/Marc_Jayson_Macaburas_Resume.pdf" 
            download
            id="downloadResume"
@@ -147,56 +95,52 @@
   <!-- SKILLS SECTION -->
   <section id="skills" class="bg-gray-300 dark:bg-gray-800 py-20 transition-colors duration-500">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-12 text-center">Skills</h2>
-
+      <h2 class="text-3xl font-bold mb-12 text-center fade-in" data-delay="0">Skills</h2>
       <div class="flex flex-col items-center space-y-8">
-        <!-- Top row - 8 icons -->
         <div class="flex flex-wrap justify-center gap-8">
-          <img src="files/icons/linux-svgrepo-com.svg" alt="Linux" class="skill-icon w-16 h-16">
-          <img src="files/icons/ci-cd-svgrepo-com.svg" alt="CI/CD" class="skill-icon w-16 h-16">
-          <img src="files/icons/docker-svgrepo-com.svg" alt="Docker" class="skill-icon w-16 h-16">
-          <img src="files/icons/ansible-svgrepo-com.svg" alt="Ansible" class="skill-icon w-16 h-16">
-          <img src="files/icons/aws-svgrepo-com.svg" alt="AWS" class="skill-icon w-16 h-16">
-          <img src="files/icons/terraform-svgrepo-com.svg" alt="Terraform" class="skill-icon w-16 h-16">
-          <img src="files/icons/kubernetes-svgrepo-com.svg" alt="Kubernetes" class="skill-icon w-16 h-16">
-          <img src="files/icons/python-svgrepo-com.svg" alt="Python" class="skill-icon w-16 h-16">
+          <div class="skill-card fade-in" data-delay="100"><img src="files/icons/linux-svgrepo-com.svg" alt="Linux"></div>
+          <div class="skill-card fade-in" data-delay="200"><img src="files/icons/ci-cd-svgrepo-com.svg" alt="CI/CD"></div>
+          <div class="skill-card fade-in" data-delay="300"><img src="files/icons/docker-svgrepo-com.svg" alt="Docker"></div>
+          <div class="skill-card fade-in" data-delay="400"><img src="files/icons/ansible-svgrepo-com.svg" alt="Ansible"></div>
+          <div class="skill-card fade-in" data-delay="500"><img src="files/icons/aws-svgrepo-com.svg" alt="AWS"></div>
+          <div class="skill-card fade-in" data-delay="600"><img src="files/icons/terraform-svgrepo-com.svg" alt="Terraform"></div>
+          <div class="skill-card fade-in" data-delay="700"><img src="files/icons/kubernetes-svgrepo-com.svg" alt="Kubernetes"></div>
+          <div class="skill-card fade-in" data-delay="800"><img src="files/icons/python-svgrepo-com.svg" alt="Python"></div>
         </div>
-
-        <!-- Bottom row - 7 icons -->
         <div class="flex flex-wrap justify-center gap-8">
-          <img src="files/icons/bash-svgrepo-com.svg" alt="Bash" class="skill-icon w-16 h-16">
-          <img src="files/icons/prometheus-svgrepo-com.svg" alt="Prometheus" class="skill-icon w-16 h-16">
-          <img src="files/icons/grafana-svgrepo-com.svg" alt="Grafana" class="skill-icon w-16 h-16">
-          <img src="files/icons/technical-support-customer-svgrepo-com.svg" alt="Technical Support" class="skill-icon w-16 h-16">
-          <img src="files/icons/git-svgrepo-com.svg" alt="Git" class="skill-icon w-16 h-16">
-          <img src="files/icons/github-142-svgrepo-com.svg" alt="GitHub" class="skill-icon w-16 h-16">
-          <img src="files/icons/jenkins-svgrepo-com.svg" alt="Jenkins" class="skill-icon w-16 h-16">
+          <div class="skill-card fade-in" data-delay="900"><img src="files/icons/bash-svgrepo-com.svg" alt="Bash"></div>
+          <div class="skill-card fade-in" data-delay="1000"><img src="files/icons/prometheus-svgrepo-com.svg" alt="Prometheus"></div>
+          <div class="skill-card fade-in" data-delay="1100"><img src="files/icons/grafana-svgrepo-com.svg" alt="Grafana"></div>
+          <div class="skill-card fade-in" data-delay="1200"><img src="files/icons/technical-support-customer-svgrepo-com.svg" alt="Technical Support"></div>
+          <div class="skill-card fade-in" data-delay="1300"><img src="files/icons/git-svgrepo-com.svg" alt="Git"></div>
+          <div class="skill-card fade-in" data-delay="1400"><img src="files/icons/github-142-svgrepo-com.svg" alt="GitHub"></div>
+          <div class="skill-card fade-in" data-delay="1500"><img src="files/icons/jenkins-svgrepo-com.svg" alt="Jenkins"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS SECTION -->
-  <section id="projects" class="bg-gray-200 dark:bg-gray-900 py-20 transition-colors duration-500">
+  <section id="projects" class="bg-gray-200 dark:bg-gray-900 py-20 transition-colors duration-500 fade-in" data-delay="0">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8 text-center">Projects</h2>
+      <h2 class="text-3xl font-bold mb-8 text-center fade-in" data-delay="100">Projects</h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="project-card">
+        <div class="project-card fade-in" data-delay="200">
           <h3 class="text-xl font-semibold mb-2">Car Rental MERN App</h3>
           <p class="mb-4">A MERN stack web app deployed on AWS with Docker integration, CI/CD via GitHub Actions, and Terraform provisioning.</p>
           <a href="https://github.com/marcsman007/car-rental-app.git" target="_blank" class="project-link">View on GitHub</a>
         </div>
-        <div class="project-card">
+        <div class="project-card fade-in" data-delay="300">
           <h3 class="text-xl font-semibold mb-2">Monitoring Stack</h3>
           <p class="mb-4">Full-stack monitoring with Prometheus, Grafana, Node Exporter, integrated with Docker and Terraform.</p>
           <a href="https://github.com/marcsman007/monitoring-stack.git" target="_blank" class="project-link">View on GitHub</a>
         </div>
-        <div class="project-card">
+        <div class="project-card fade-in" data-delay="400">
           <h3 class="text-xl font-semibold mb-2">DevOps Scripts</h3>
           <p class="mb-4">A collection of Bash and Python scripts for automation, monitoring, and cloud management.</p>
           <a href="https://github.com/marcsman007/devops-scripts.git" target="_blank" class="project-link">View on GitHub</a>
         </div>
-        <div class="project-card">
+        <div class="project-card fade-in" data-delay="500">
           <h3 class="text-xl font-semibold mb-2">Terraform AWS Infrastructure</h3>
           <p class="mb-4">A modular, multi-environment Terraform setup for deploying web apps on AWS.</p>
           <a href="https://github.com/marcsman007/terraform-aws-infra.git" target="_blank" class="project-link">View on GitHub</a>
@@ -206,7 +150,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer id="contact" class="bg-gray-900 dark:bg-gray-800 text-gray-400 py-6 text-center">
+  <footer id="contact" class="bg-gray-900 dark:bg-gray-800 text-gray-400 py-6 text-center fade-in" data-delay="0">
     <p>Email: <a href="mailto:macaburasmarcjayson@gmail.com" class="footer-link">macaburasmarcjayson@gmail.com</a></p>
     <p>LinkedIn: <a href="https://www.linkedin.com/in/marc-jayson-macaburas-574b5618a/" target="_blank" class="footer-link">Marc Jayson Macaburas</a></p>
     <p>GitHub: <a href="https://github.com/marcsman007" target="_blank" class="footer-link">marcsman007</a></p>
@@ -215,18 +159,5 @@
 
   <!-- Scripts -->
   <script src="script.js"></script>
-  <script>
-    // Resume download notification
-    document.getElementById('downloadResume').addEventListener('click', function() {
-      const notification = document.getElementById('resumeNotification');
-      notification.classList.remove('hidden');
-      notification.classList.add('notification');
-
-      setTimeout(() => {
-        notification.classList.add('hidden');
-        notification.classList.remove('notification');
-      }, 3000);
-    });
-  </script>
 </body>
 </html>
