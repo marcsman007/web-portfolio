@@ -78,3 +78,13 @@ document.getElementById('downloadResume').addEventListener('click', function() {
     notification.classList.add('hidden');
   }, 3000);
 });
+
+// ======================
+// Flip cards click toggle (for mobile-friendly)
+// ======================
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.querySelector('.flip-card-inner').classList.toggle('flipped');
+  });
+});
+
